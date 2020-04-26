@@ -1,0 +1,37 @@
+<div class="ui-g bg-image">
+    <div class="ui-lg-4 ui-md-4 ui-g-4">
+    </div>
+
+    <div class="ui-lg-4 ui-md-4 ui-g-4">
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <mat-card class="ui-lg-12 ui-md-12 ui-g-12 login-card">
+                <div class="ui-lg-12 ui-md-12 ui-g-12 login-title">
+                    <span> Welcome </span>
+                </div>
+                <div class="ui-lg-12 ui-md-12 ui-g-12" style="padding-top: 5%;">
+                    <div class="ui-lg-12 ui-md-12 ui-g-12 center">
+                        <mat-form-field>
+                            <input matInput placeholder="User Name" [(ngModel)]="user.userName">
+                            <mat-icon matSuffix class="icon">account_circle</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="ui-lg-12 ui-md-12 ui-g-12 center">
+                        <mat-form-field>
+                            <input matInput placeholder="Password" type="password" [(ngModel)]="user.password">
+                            <mat-icon matSuffix class="icon">vpn_key</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="ui-lg-12 ui-md-12 ui-g-12 center" style="padding-bottom: 5%;">
+                    <button mat-raised-button class="login-btn" (click)="login()">Login</button>
+                </div>
+            </mat-card>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <mat-card class="center signup-click">
+                <span> Don't have an account?</span>
+                <span class="signup-link" routerLink="/signup">Sign Up</span>
+            </mat-card>
+        </div>
+    </div>
+</div>

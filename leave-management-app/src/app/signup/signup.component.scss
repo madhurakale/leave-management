@@ -1,0 +1,44 @@
+$primary-color: #4c6aaf;
+.signup-title {
+    text-align: center;
+    background-color: $primary-color;
+    padding: 13px;
+    color: white;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+.signup-card {
+    margin-top: 3%;
+    padding: 0%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.submit-btn {
+    color: white;
+    background-color: $primary-color;
+}
+
+.login-link {
+    margin-top: 1%;
+    color: $primary-color;
+    padding-left: 2%;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.login-card {
+    text-align: center;
+}
+
+.bg-image {
+    background-image: url('../shared/assets/bg.jpg');
+    background-repeat: no-repeat;
+    height: 100%;
+    background-size: 100% 100%;
+}
+
+.padding-zero {
+    padding: 2% 0;
+}

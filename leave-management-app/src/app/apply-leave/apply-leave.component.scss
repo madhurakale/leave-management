@@ -1,0 +1,36 @@
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 16px !important;
+}
+
+.pad-zero {
+    padding: 0;
+}
+
+.calendar {
+    padding: 1%;
+}
+
+.day-name {
+    font-size: 20px;
+    color: white;
+    background-color: #4c6aaf;
+    border-color: #4c6aaf;
+    text-align: center;
+}
+
+.day {
+    border: 1px solid;
+}
+
+.date {
+    font-size: 20px;
+}
+
+.holiday {
+    color: red;
+}
+
+.cancel-btn {
+    font-size: 18px;
+    cursor: pointer;
+}

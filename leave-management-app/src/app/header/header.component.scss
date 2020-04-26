@@ -1,0 +1,30 @@
+$primary-color: #4c6aaf;
+.header-bg {
+    height: 100%;
+    background-color: $primary-color;
+}
+
+.app-icon {
+    background-image: url('../shared/assets/app-icon.png');
+    background-size: 100% 100%;
+}
+
+.app-name {
+    color: white;
+    font-size: 27px;
+    text-align: left;
+}
+
+.header-text {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    span {
+        vertical-align: sub;
+    }
+    .user-icon {
+        vertical-align: bottom;
+        padding-right: 3%;
+    }
+}

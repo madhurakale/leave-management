@@ -1,0 +1,24 @@
+<div class="ui-g calendar">
+    <div *ngFor="let weekday of daysOfWeek" class="ui-lg-1 ui-md-1 ui-g-1 day day-name">
+        <span>{{weekday}}</span>
+    </div>
+    <div *ngFor="let week of weeksOfMonth" class="ui-lg-12 ui-md-12 ui-g-12 pad-zero">
+        <div *ngFor="let day of week" class="ui-lg-1 ui-md-1 ui-g-1 day">
+            <div class="ui-lg-8 ui-md-12 ui-g-12 pad-zero">
+                <span [ngClass]="{'holiday': day.isHoliday}" class="date">{{day.dateNum}}</span>
+            </div>
+            <div class="ui-lg-4 ui-md-12 ui-g-12 pad-zero" *ngIf="day.isSelected">
+                <span class="material-icons cancel-btn" (click)="cancelLeaveSelection(day)">cancel</span>
+            </div>
+            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" *ngIf="!day.isHoliday">
+                <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="day.selectedLeaveType">
+                    <mat-button-toggle value="SL" (click)="day.isSelected = true" style="font-size: 12px;">SL</mat-button-toggle>
+                    <mat-button-toggle value="CL" (click)="day.isSelected = true" style="font-size: 12px;">CL</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="padding-bottom: 1%;" *ngIf="day.isHoliday">
+                <span>{{day.holiday}}</span>
+            </div>
+        </div>
+    </div>
+</div>
