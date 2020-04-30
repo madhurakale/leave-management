@@ -1,23 +1,84 @@
-<div class="ui-g calendar">
-    <div *ngFor="let weekday of daysOfWeek" class="ui-lg-1 ui-md-1 ui-g-1 day day-name">
-        <span>{{weekday}}</span>
+<div class="ui-g">
+    <!-- Leave form -->
+    <div class="ui-lg-5 ui-md-5 ui-g-5">
+        <div class="ui-lg-12 ui-md-12 ui-g-12 ">
+            <span class="title">Apply Leave</span>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <mat-form-field>
+                <input matInput placeholder="Approver" [disabled]="true" [(ngModel)]="leave.approverId">
+            </mat-form-field>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero">
+                <span class="leave-dates">Leave Dates</span>
+            </div>
+            <div class="ui-lg-4 ui-md-12 ui-g-12" *ngFor="let leaveDtl of leave.leaveDetails">
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip [ngClass]="{'leave-sl': leaveDtl.leaveType==='SL', 'leave-cl': leaveDtl.leaveType==='CL'}" selected>
+                        {{leaveDtl.leaveDate}} - {{leaveDtl.leaveType}}
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <mat-form-field>
+                <textarea matInput placeholder="Leave Reason" [(ngModel)]="leave.leaveReason"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12">
+            <button mat-raised-button class="create-btn" (click)="createLeave()">Create</button>
+            <button mat-raised-button class="submit-btn">Submit</button>
+            <button mat-stroked-button class="cancel">Cancel</button>
+        </div>
     </div>
-    <div *ngFor="let week of weeksOfMonth" class="ui-lg-12 ui-md-12 ui-g-12 pad-zero">
-        <div *ngFor="let day of week" class="ui-lg-1 ui-md-1 ui-g-1 day">
-            <div class="ui-lg-8 ui-md-12 ui-g-12 pad-zero">
-                <span [ngClass]="{'holiday': day.isHoliday}" class="date">{{day.dateNum}}</span>
+    <!-- Calendar -->
+    <div class="ui-lg-7 ui-md-7 ui-g-7 calendar">
+        <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="display: flex;">
+            <div class="ui-lg-4 ui-md-4 ui-g-4 pad-zero next-prev-month">
+                <span class="material-icons" (click)="changeMonth(-1)">arrow_left</span>
             </div>
-            <div class="ui-lg-4 ui-md-12 ui-g-12 pad-zero" *ngIf="day.isSelected">
-                <span class="material-icons cancel-btn" (click)="cancelLeaveSelection(day)">cancel</span>
+            <div class="ui-lg-3 ui-md-3 ui-g-3 pad-zero">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="selectedMonth" (selectionChange)="changeMonth(0)">
+                        <mat-option *ngFor="let month of monthsOfYear" [value]="month">
+                            {{month}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
-            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" *ngIf="!day.isHoliday">
-                <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="day.selectedLeaveType">
-                    <mat-button-toggle value="SL" (click)="day.isSelected = true" style="font-size: 12px;">SL</mat-button-toggle>
-                    <mat-button-toggle value="CL" (click)="day.isSelected = true" style="font-size: 12px;">CL</mat-button-toggle>
-                </mat-button-toggle-group>
+            <div class="ui-lg-1 ui-md-1 ui-g-1 pad-zero">
+                <span class="year">{{selectedYear}}</span>
             </div>
-            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="padding-bottom: 1%;" *ngIf="day.isHoliday">
-                <span>{{day.holiday}}</span>
+            <div class="ui-lg-4 ui-md-4 ui-g-4 pad-zero next-prev-month">
+                <span class="material-icons" (click)="changeMonth(+1)">arrow_right</span>
+            </div>
+        </div>
+        <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero">
+            <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="display: flex;">
+                <div *ngFor="let weekday of daysOfWeek" class="cal-grid day-name">
+                    <span>{{weekday}}</span>
+                </div>
+            </div>
+            <div *ngFor="let week of weeksOfMonth" class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="display: flex;">
+                <div *ngFor="let day of week" class="cal-grid day">
+                    <div class="ui-lg-8 ui-md-12 ui-g-12 pad-zero">
+                        <span [ngClass]="{'holiday': day.isHoliday}" class="date"> {{day.dateNum}} </span>
+                        <span> {{day.month}} </span>
+                    </div>
+                    <div class="ui-lg-4 ui-md-12 ui-g-12 pad-zero" *ngIf="day.isSelected" style="text-align: right;">
+                        <span class="material-icons cancel-btn" (click)="cancelLeaveSelection(day)">cancel</span>
+                    </div>
+                    <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" *ngIf="!day.isHoliday" style="padding-top: 4%;">
+                        <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="day.selectedLeaveType">
+                            <mat-button-toggle value="SL" (click)="updateLeaveDetails(day)" style="font-size: 12px;">SL</mat-button-toggle>
+                            <mat-button-toggle value="CL" (click)="updateLeaveDetails(day)" style="font-size: 12px;">CL</mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                    <div class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="padding-bottom: 1%;padding-top: 4%;" *ngIf="day.isHoliday">
+                        <span>{{day.holiday}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
