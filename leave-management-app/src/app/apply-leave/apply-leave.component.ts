@@ -49,23 +49,32 @@ export class ApplyLeaveComponent implements OnInit {
       const endOfWeek = moment(date).endOf('week');
       let day = startOfWeek;
       while (day < endOfWeek) {
+        let gridDay = moment(day.toDate()).format('YYYY-MM-DD');
         let isHoliday = false;
+        let isSelected = false;
+        let selectedLeaveType = null;
         let holiday = '';
         // Check if Weekend Holiday
         if (day.toDate().getDay() === 0 || day.toDate().getDay() === 6) {
           isHoliday = true;
           holiday = 'Weekend';
         }
+        // Check for selected leave dates
+        const leaveDay = this.leave.leaveDetails.filter(x => x.leaveDate.toString() === gridDay)[0];
+        if(leaveDay) {
+          isSelected = true;
+          selectedLeaveType = leaveDay.leaveType;
+        }
         // Push to days array
         days.push({
-          day: moment(day.toDate()).format('YYYY-MMM-DD'),
+          day: gridDay,
           dateNum: day.toDate().getDate(),
           month: moment(day.toDate()).format('MMM'),
           date: day.toDate(),
           isHoliday: isHoliday,
           holiday: holiday,
-          isSelected: false,
-          selectedLeaveType: null
+          isSelected: isSelected,
+          selectedLeaveType: selectedLeaveType
         });
         day = day.clone().add(1, 'd');
         date = day.toDate();
@@ -99,7 +108,9 @@ export class ApplyLeaveComponent implements OnInit {
         leaveDate: day.day,
         leaveType: day.selectedLeaveType
       });
-    }
+    }    
+    let sortedDates = this.leave.leaveDetails.sort(day.date);
+    console.log(sortedDates);
   }
 
   createLeave() {

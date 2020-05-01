@@ -16,7 +16,7 @@
             <div class="ui-lg-4 ui-md-12 ui-g-12" *ngFor="let leaveDtl of leave.leaveDetails">
                 <mat-chip-list aria-label="Fish selection">
                     <mat-chip [ngClass]="{'leave-sl': leaveDtl.leaveType==='SL', 'leave-cl': leaveDtl.leaveType==='CL'}" selected>
-                        {{leaveDtl.leaveDate}} - {{leaveDtl.leaveType}}
+                        {{leaveDtl.leaveDate | date:'dd-MMM-yyyy'}} - {{leaveDtl.leaveType}}
                     </mat-chip>
                 </mat-chip-list>
             </div>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div *ngFor="let week of weeksOfMonth" class="ui-lg-12 ui-md-12 ui-g-12 pad-zero" style="display: flex;">
-                <div *ngFor="let day of week" class="cal-grid day">
+                <div *ngFor="let day of week" class="cal-grid day" [ngClass]="{'selected-grid': day.isSelected}">
                     <div class="ui-lg-8 ui-md-12 ui-g-12 pad-zero">
                         <span [ngClass]="{'holiday': day.isHoliday}" class="date"> {{day.dateNum}} </span>
                         <span> {{day.month}} </span>
