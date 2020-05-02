@@ -37,5 +37,4 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService{
 			return null;
 		}
 	}
-
 }

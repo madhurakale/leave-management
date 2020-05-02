@@ -1,5 +1,7 @@
 package com.example.LeaveMgmt.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,4 +38,9 @@ public class UserServiceImpl implements UserService {
 		return userEntity;
 	}
 
+	@Override
+	public java.util.List<UserEntity> getAllUsers(UserDTO user) {
+		List<UserEntity> allUsers = userDAO.findAll();
+		return allUsers;
+	}
 }

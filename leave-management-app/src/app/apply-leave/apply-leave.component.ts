@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { LeaveDTO, UserDTO } from '../shared/types/custom-types';
+import { LeaveDTO, UserDTO, LeaveDetailDTO } from '../shared/types/custom-types';
 import { LeaveService } from '../shared/services/leave.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -61,7 +61,7 @@ export class ApplyLeaveComponent implements OnInit {
         }
         // Check for selected leave dates
         const leaveDay = this.leave.leaveDetails.filter(x => x.leaveDate.toString() === gridDay)[0];
-        if(leaveDay) {
+        if (leaveDay) {
           isSelected = true;
           selectedLeaveType = leaveDay.leaveType;
         }
@@ -108,9 +108,10 @@ export class ApplyLeaveComponent implements OnInit {
         leaveDate: day.day,
         leaveType: day.selectedLeaveType
       });
-    }    
-    let sortedDates = this.leave.leaveDetails.sort(day.date);
-    console.log(sortedDates);
+    }
+    this.leave.leaveDetails.sort((i: LeaveDetailDTO, j: LeaveDetailDTO) => {
+      return new Date(i.leaveDate).getTime() - new Date(j.leaveDate).getTime();
+    });
   }
 
   createLeave() {

@@ -1,5 +1,7 @@
 package com.example.LeaveMgmt.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,5 +52,12 @@ public class UserController {
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
+	}
+	
+	@GetMapping(value="/applyLeave", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<UserEntity> getAllUsers(@RequestBody UserDTO userDTO) {
+		List<UserEntity> userEntity = userService.getAllUsers(userDTO);
+		return userEntity;
 	}
 }
