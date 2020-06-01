@@ -2,16 +2,17 @@ package com.example.LeaveMgmt.Entity;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import com.example.LeavaMgmt.DTO.LeaveDetailDTO;
 
 @Document(collection = "LEAVE_APPLICATION")
 public class LeaveEntity {
 	
-	@Id
+	@MongoId(value=FieldType.OBJECT_ID)
 	private String leaveApplicationId;
 	@Field("LEAVE_APPLICANT")
 	private String applicantId;

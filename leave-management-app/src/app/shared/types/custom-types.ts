@@ -1,3 +1,10 @@
+export enum LeaveStatus {
+    DRAFT = "DRAFT",
+	APPLIED = "APPLIED",
+	APPROVED = "APPROVED",
+	REJECTED = "REJECTED"
+}
+
 export interface UserDTO {
     userId: string;
     userName: string;

@@ -1,0 +1,27 @@
+<div class="ui-g">
+    <div class="ui-lg-12 ui-md-12 ui-g-12 title">
+        Leave History
+    </div>
+    <div class="ui-lg-12 ui-md-12 ui-g-12">
+        <div class="ui-lg-3 ui-md-3 ui-g-3" *ngFor="let leaves of allLeaveApplications">
+            <mat-card class="leave-card">
+                <div class="block-title" [ngClass]="{'status-draft': leaves.leaveStatus==='DRAFT','status-applied': leaves.leaveStatus==='APPLIED','status-rejected': leaves.leaveStatus==='REJECTED'}">
+                    <span>{{leaves.leaveStatus}} </span>
+                </div>
+                <div class="leave-details">
+                    <span>Leave Dates</span>
+                    <mat-icon (click)="openDialog()" class="leave-details-icon">arrow_right_alt</mat-icon>
+                </div>
+                <div class="leave-details">
+                    <mat-label>Leave Reason</mat-label>
+                    <mat-icon (click)="openDialog()" class="leave-details-icon">arrow_right_alt</mat-icon>
+                </div>
+                <div class="action-icons">
+                    <mat-icon matTooltip="Edit Leave Application" class="icon" style="color: black">edit</mat-icon>
+                    <mat-icon matTooltip="View Leave" class="icon" style="color: black">visibility</mat-icon>
+                    <mat-icon matTooltip="Cancel" class="icon" style="color: black">cancel</mat-icon>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

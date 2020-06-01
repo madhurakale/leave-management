@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { LeaveDTO, UserDTO, LeaveDetailDTO } from '../shared/types/custom-types';
+import { LeaveDTO, UserDTO, LeaveDetailDTO , LeaveStatus } from '../shared/types/custom-types';
 import { LeaveService } from '../shared/services/leave.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../shared/services/user.service';
+
 
 @Component({
   selector: 'app-apply-leave-component',
   templateUrl: './apply-leave.component.html',
   styleUrls: ['./apply-leave.component.scss']
 })
+
 export class ApplyLeaveComponent implements OnInit {
 
   weeksOfMonth = [];
@@ -17,14 +20,18 @@ export class ApplyLeaveComponent implements OnInit {
   selectedMonth: string;
   monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   leave: LeaveDTO;
+  allUsers: UserDTO[] = [];
+  isButtonVisible: boolean = false;
+
 
   constructor(
     private leaveService: LeaveService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
   ) {
     this.leave = {
       leaveApplicationId: '',
-      applicantId: '',
+      applicantId: this.userService.loggedInUser.userId,
       approverId: '',
       leaveReason: '',
       leaveStatus: '',
@@ -37,6 +44,7 @@ export class ApplyLeaveComponent implements OnInit {
     this.selectedYear = today.getFullYear();
     this.selectedMonth = moment(today).format('MMMM');
     this.weeksOfMonth = this.calendarWeeks(today.getMonth(), today.getFullYear(), 1);
+    this.loadAllUsers();
   }
 
   calendarWeeks(month, year, startDate) {
@@ -115,12 +123,42 @@ export class ApplyLeaveComponent implements OnInit {
   }
 
   createLeave() {
+    this.leave.leaveStatus = LeaveStatus.DRAFT.toString();
+    this.isButtonVisible = true;
     this.leaveService.applyLeave(this.leave).subscribe(
       resp => {
         this.toastr.success('Leave created successfully', 'Success');
+        // this.isButtonVisible = false;
+        this.leave = resp;
+        console.log(this.leave);
       },
       err => {
         this.toastr.error('Leave creation failed', 'Failure');
+      }
+    )
+  }
+
+  updateLeave() {
+    this.isButtonVisible = true;
+    this.leaveService.updateLeave(this.leave).subscribe(
+      resp => {
+        this.toastr.success('Leave updated successfully', 'Success');
+        
+      },
+      err => {
+        this.toastr.error('Leave updation failed', 'Failure');
+      }
+    )
+  }
+
+  loadAllUsers() {
+    this.userService.allUsers().subscribe(
+      resp => {
+
+        this.allUsers = resp.filter(user => user.userId !== this.userService.loggedInUser.userId);
+      },
+      err => {
+        console.log('error' + err);
       }
     )
   }

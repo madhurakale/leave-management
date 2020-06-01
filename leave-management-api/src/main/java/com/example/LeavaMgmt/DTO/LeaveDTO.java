@@ -16,9 +16,10 @@ public class LeaveDTO {
 	}
 
 	
-	public LeaveDTO(String applicantId, String approverId, String leaveReason, String leaveStatus,
+	public LeaveDTO(String leaveApplicationId, String applicantId, String approverId, String leaveReason, String leaveStatus,
 			List<LeaveDetailDTO> leaveDetails) {
 		super();
+		this.leaveApplicationId = leaveApplicationId;
 		this.applicantId = applicantId;
 		this.approverId = approverId;
 		this.leaveReason = leaveReason;

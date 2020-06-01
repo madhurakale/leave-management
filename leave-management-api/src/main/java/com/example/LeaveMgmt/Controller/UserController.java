@@ -25,12 +25,12 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping(value = "/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
-	public UserEntity getUser(@PathVariable String userId) {
-		UserEntity userDetails = userService.getUser(userId);
-		return userDetails;
-	}
+//	@GetMapping(value = "/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+//	@ResponseBody
+//	public UserEntity getUser(@PathVariable String userId) {
+//		UserEntity userDetails = userService.getUser(userId);
+//		return userDetails;
+//	}
 
 	@PostMapping(value = "/signup", produces = {MediaType.APPLICATION_JSON_VALUE} )
 	@ResponseBody
@@ -54,10 +54,10 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(value="/applyLeave", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value="/allUsers", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	public List<UserEntity> getAllUsers(@RequestBody UserDTO userDTO) {
-		List<UserEntity> userEntity = userService.getAllUsers(userDTO);
+	public List<UserEntity> getAllUsers() {
+		List<UserEntity> userEntity = userService.getAllUsers();
 		return userEntity;
 	}
 }

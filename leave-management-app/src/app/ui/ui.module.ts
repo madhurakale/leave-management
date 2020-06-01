@@ -11,6 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatDividerModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   exports: [
     MatFormFieldModule,
@@ -39,7 +41,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatDividerModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ]
 })
 export class UiModule { }

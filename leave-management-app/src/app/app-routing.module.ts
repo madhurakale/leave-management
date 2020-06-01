@@ -1,3 +1,4 @@
+import { LeaveHistoryComponent } from './leave-history/leave-history.component';
 import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'applyLeave', component: ApplyLeaveComponent }
+  { path: 'applyLeave', component: ApplyLeaveComponent },
+  { path: 'leaveHistory', component: LeaveHistoryComponent }
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../shared/types/custom-types';
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private router: Router
   ) {
     this.user = {
       userId: '',
@@ -35,13 +37,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userService.login(this.user).subscribe(
-      resp =>{
-        this.toastr.success('Login Successful','Success');
+      resp => {
+        this.toastr.success('Login Successful', 'Success');
+        this.userService.loggedInUser = resp;        
+        this.router.navigate(['/applyLeave']);
       },
-      err=>{
-        this.toastr.error('Please try again','Login failed')
+      err => {
+        this.toastr.error('Please try again', 'Login failed')
       }
-    )
+    ) 
   }
 
 }

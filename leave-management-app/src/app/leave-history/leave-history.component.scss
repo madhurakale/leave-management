@@ -1,0 +1,62 @@
+.title {
+    font-size: 30px;
+    color: #4c6aaf;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.leave-card {
+    padding: 0%;
+    border-radius: 8px;
+    transition: all 0.4s ease-in-out;
+}
+
+.mat-card:hover {
+    transform: scale(1.05);
+}
+
+.block-title {
+    background-color: #4c6aaf;
+    color: white;
+    text-align: center;
+    padding: 2%;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.action-icons {
+    border-top: 1px solid black;
+    padding: 1%;
+    margin: 0 2%;
+    cursor: pointer;
+    color: #000000b5;
+    text-align: right;
+}
+
+.leave-dates-btn {
+    margin-left: 10%;
+}
+
+.leave-details {
+    margin-left: 6%;
+    font-size: 16px;
+    color: grey;
+    margin: 4%;
+    cursor: pointer;
+}
+
+.leave-details-icon {
+    margin-left: 5%;
+}
+
+.status-draft {
+    background-color: #4c6aaf;
+}
+
+.status-applied {
+    background-color: #008000bf;
+}
+
+.status-rejected {
+    background-color: #ff0000cc;
+}

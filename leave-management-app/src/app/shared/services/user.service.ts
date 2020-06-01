@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  public loggedInUser: UserDTO;
   public signupUser: UserDTO;
   url = environment.apiUrl;
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -22,5 +23,9 @@ export class UserService {
 
   login(user: UserDTO): Observable<any> {
     return this.httpClient.post(this.url + 'user/login', user, this.options);
+  }
+
+  allUsers(): Observable<any> {
+    return this.httpClient.get(this.url + 'user/allUsers', this.options);
   }
 }

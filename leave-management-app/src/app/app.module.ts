@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './shared/services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
+import { LeaveHistoryComponent } from './leave-history/leave-history.component';
+import { DialogDetailsComponent } from './dialog-details/dialog-details.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
     FooterComponent,
     HeaderComponent,
     LoginComponent,
-    ApplyLeaveComponent
+    ApplyLeaveComponent,
+    LeaveHistoryComponent,
+    DialogDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,7 @@ import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
     ToastrModule.forRoot()
   ],
   providers: [],
+  entryComponents: [DialogDetailsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

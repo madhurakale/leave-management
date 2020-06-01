@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public java.util.List<UserEntity> getAllUsers(UserDTO user) {
+	public java.util.List<UserEntity> getAllUsers() {
 		List<UserEntity> allUsers = userDAO.findAll();
 		return allUsers;
 	}

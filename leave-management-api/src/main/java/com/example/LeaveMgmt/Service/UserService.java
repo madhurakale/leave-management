@@ -10,5 +10,5 @@ public interface UserService {
 	UserEntity login(UserDTO user);
 	UserEntity signup(UserDTO user);
 	UserEntity getUser(String userId);
-	List<UserEntity> getAllUsers(UserDTO user);
+	List<UserEntity> getAllUsers();
 }

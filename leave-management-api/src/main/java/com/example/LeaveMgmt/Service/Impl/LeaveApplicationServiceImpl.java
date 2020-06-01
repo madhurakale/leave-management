@@ -1,5 +1,6 @@
 package com.example.LeaveMgmt.Service.Impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService{
 		return leaveEntity;
 	}
 
+	
+	
 	@Override
 	public LeaveEntity updateLeave(LeaveDTO leave) {
 		Optional<LeaveEntity> leaveApplication = leaveDAO.findById(leave.getLeaveApplicationId());
@@ -36,5 +39,13 @@ public class LeaveApplicationServiceImpl implements LeaveApplicationService{
 		else {
 			return null;
 		}
+	}
+
+
+
+	@Override
+	public List<LeaveEntity> getAllLeaveApplications() {
+		List<LeaveEntity> allLeaveApplications = leaveDAO.findAll();
+		return allLeaveApplications;
 	}
 }

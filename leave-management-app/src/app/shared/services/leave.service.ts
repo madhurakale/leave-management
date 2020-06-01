@@ -19,4 +19,12 @@ export class LeaveService {
   applyLeave(leaveDTO: LeaveDTO): Observable<any> {
     return this.httpClient.post(this.url + 'leave/applyLeave', leaveDTO, this.options);
   }
+
+  updateLeave(leaveDTO: LeaveDTO): Observable<any> {
+    return this.httpClient.post(this.url + 'leave/updateLeave', leaveDTO, this.options);
+  }
+
+  getLeaveApplications ():Observable<any> {
+    return this.httpClient.get(this.url + 'leave/getLeaveApplications');
+  }
 }
